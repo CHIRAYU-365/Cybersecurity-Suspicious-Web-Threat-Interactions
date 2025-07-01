@@ -57,7 +57,7 @@ def predict():
     return render_template("index.html", prediction=result)
 
 def start_flask():
-    app.run(debug=False, port=5000)
+    app.run(debug=False, port=5000, host='0.0.0.0')
 
 if __name__ == "__main__":
     # Run Flask in a background thread
