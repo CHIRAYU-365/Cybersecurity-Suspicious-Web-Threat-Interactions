@@ -27,12 +27,9 @@
 #     app.run(debug=True)
 
 
-
 from flask import Flask, render_template, request
 import pickle
 import numpy as np
-import threading
-import webview
 
 app = Flask(__name__)
 
@@ -56,13 +53,6 @@ def predict():
         result = f"Error: {str(e)}"
     return render_template("index.html", prediction=result)
 
-def start_flask():
-    app.run(debug=False, port=5000, host='0.0.0.0')
-
 if __name__ == "__main__":
-    # Run Flask in a background thread
-    threading.Thread(target=start_flask, daemon=True).start()
+    app.run(debug=False, host="0.0.0.0", port=5000)
 
-    # Start pywebview and open the web app
-    webview.create_window("Cybersecurity Threat Detector", "http://127.0.0.1:5000", width=800, height=600)
-    webview.start()
